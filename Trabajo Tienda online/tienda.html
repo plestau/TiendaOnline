@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="tienda.css">
+    <script src="../../jquery-3.6.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">emailjs.init('wlda7s9LIvBb3FMyP')</script>
+    <title>Tienda Online</title>
+</head>
+
+<body>
+    <header>
+        <h1 id="title">Tienda online</h1>
+        <img src="logo.png" id="logo">
+        <div id="links">
+            <img src="cuenta.png" id="userlogo">
+            <a id="iniciarsesion">Iniciar Sesión</a>
+            <img src="carrito.png" id="carrologo">
+            <a id="carrito">Carrito</a>
+        </div>
+    </header>
+    <hr>
+    <div id="categorias">
+        <p>Categorias: </p>
+        <a id="electronica">Electrónica</a>
+        <a id="joyeria">Joyería</a>
+        <a id="hombre">Ropa de hombre</a>
+        <a id="mujer">Ropa de mujer</a>
+    </div>
+    <div id="orden">
+        <p>Orden: </p>
+        <img src="ascendente.png" id="ascendente">
+        <img src="descencente.png" id="descendente">
+    </div>
+    <hr>
+    <div id="login">
+        <h2>Login de Usuario</h2>
+        <form type="post">
+            <label for="login_user">Usuario: </label>
+            <input type="text" id="login_user" name="usuario">
+            <label for="contrasena">Contraseña: </label>
+            <input type="password" id="contrasena" name="contrasena">
+            <input type="submit" id="login_submit" value="Enviar">
+        </form>
+        <p style="color:red">¿No tienes Usuario?</p>
+        <a id="registrate">Registrate</a>
+        <div id="registrarse">
+            <form id="registrarme" type="post">
+                <br>
+                <label for="nombre">Nombre: </label>
+                <input type="text" id="nombre" name="nombre"><br>
+                <label for="apellidos">Apellidos: </label>
+                <input type="text" id="apellidos" name="apellidos"><br>
+                <label for="ciudad">Ciudad: </label>
+                <input type="text" id="ciudad" name="ciudad"><br>
+                <label for="telefono">Teléfono: </label>
+                <input type="text" id="telefono" name="telefono"><br>
+                <label for="usuario">Usuario: </label>
+                <input type="text" id="usuario" name="usuario"><br>
+                <label for="correo">Correo: </label>
+                <input type="text" id="correo" name="correo"><br>
+                <label for="contrasña">Contraseña: </label>
+                <input type="password" id="contraseña" name="contraseña"><br>
+                <input type="submit" id="registrar_submit" value="Enviar">
+            </form>
+        </div>
+    </div>
+    <p id="estado"></div>
+    <div id="disponible"></div>
+    <div id="disponible_carrito">
+        <div id="carrito_logo">
+            <h1>Carrito</h1>
+            <img src="carrito.png" id="carrologo_carrito">
+        </div>
+        <div id="carrito_productos"></div>
+        <div id="total">Total: </div>
+        <div id="botones">
+            <button id="vaciar">Vaciar carrito</button>
+            <button id="comprar">Comprar</button>
+            <button class="volver">Volver al inicio</button>
+        </div>
+    </div>
+    <div id="form_envio">
+        <form id="form_enviar" type="post">
+            <label for="nombre">Nombre: </label>
+            <input type="text" id="nombre_envio" name="nombre_envio"><br>
+            <label for="apellidos">Apellidos: </label>
+            <input type="text" id="apellidos_envio" name="apellidos_envio"><br>
+            <label for="ciudad">Ciudad: </label>
+            <input type="text" id="ciudad_envio" name="ciudad_envio"><br>
+            <label for="telefono">Teléfono: </label>
+            <input type="text" id="telefono_envio" name="telefono_envio"><br>
+            <label for="calle">Calle: </label>
+            <input type="text" id="calle_envio" name="calle_envio"><br>
+            <label for="cp">Código Postal: </label>
+            <input type="text" id="cp_envio" name="cp_envio"><br>
+            <label for="correo">Correo: </label>
+            <input type="text" id="correo_envio" name="correo_envio"><br>
+            <input type="submit" value="Enviar Pedido" id="enviar_pedido">
+        </form>
+    </div>
+    <center>
+        <div id="loading-screen" style="display: none;">
+            <img src="circles.png" alt="loading">
+        </div>
+    </center>
+    <script src="tienda.js"></script>
+</body>
+
+</html>

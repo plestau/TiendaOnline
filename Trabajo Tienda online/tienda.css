@@ -1,0 +1,173 @@
+body{
+    background-color: lightslategray;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+a, #registrar_submit, #enviar_pedido{
+    text-decoration: none;
+    color: yellow;
+    background-color: darkorange;
+    border-radius: 25%;
+    border: 2px solid black;
+    font-size: 20px;
+}
+
+#title, p{
+    color: darkslategrey;
+}
+header, #categorias, #orden{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#orden, #orden a{
+    justify-content: center;
+}
+
+#links, #categorias p{
+    display: flex;
+    align-items: center;
+    align-self: center;
+    justify-content: space-around;
+}
+
+#title{
+    align-self: center;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 10px;
+}
+
+#logo{
+    height: 100px;
+    width: 220px;
+}
+
+
+#userlogo, #carrologo, #carrologo_carrito, #ascendente, #descendente{
+    height: 50px;
+    width: 50px;
+    margin: 10px;
+}
+
+#carrito_logo{
+    display: flex;
+    margin: auto;
+    color: darkgoldenrod;
+    background-color: wheat;
+    border-radius: 55%;
+    width: 20%;
+    justify-content: center;
+}
+
+#carrologo_carrito, #carrito_logo h1{
+    height: 50px;
+    margin: 30px;
+    text-decoration:dotted underline;
+    text-decoration-color: yellowgreen;
+}
+
+#disponible, #carrito_productos, #form_envio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#disponible_carrito{
+    display: grid;
+    grid-template-areas: 10% auto 10%;
+    align-self: center;
+}
+
+#botones, #total, #disponible_carrito h1{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#total{
+    background-color: lightgreen;
+    width: 200px;
+    font-size: 30px;
+    justify-self: center;
+}
+
+.tarjeta, .tarjeta__detallada, .tarjeta__carrito{
+    box-shadow: 2px 2px 2px 2px darkslategray;
+    border-radius: 10%;
+    float: left;
+    width: 280px;
+    height: 400px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    background-color: white;
+}
+
+.tarjeta__detallada{
+    height: auto;
+    width: 350px;
+}
+
+.tarjeta__carrito{
+    height: auto;
+    width: 300px;
+}
+
+.tarjeta__body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.tarjeta__button_borrar, .tarjeta__button_añadir, .tarjeta__button_editar, .tarjeta__button_guardar, #login_submit, .volver, #enviar, #vaciar, #comprar{
+    background-color: lightgrey;
+    border-radius: 30%;
+    width: 150px;
+    height: 30px;
+    margin: 10px;
+}
+
+.tarjeta__imagen, .tarjeta__imagen_detallada{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+}
+
+.tarjeta__price, .tarjeta__description, .tarjeta__cantidad{
+    color: black;
+}
+
+.tarjeta__description{
+    height: 100px;
+    margin-bottom: 10px;
+    display: none;
+}
+
+#loading-screen{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    height: 200px;
+    width: 200px;
+}
+
+#procesar{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+#estado{
+    color:red; 
+    text-align: center; 
+    font-size: 30px;
+}
