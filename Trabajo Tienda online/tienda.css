@@ -78,6 +78,10 @@ header, #categorias, #orden{
     flex-wrap: wrap;
 }
 
+#form_envio input{
+    margin: 10px;
+}
+
 #disponible_carrito{
     display: grid;
     grid-template-areas: 10% auto 10%;
