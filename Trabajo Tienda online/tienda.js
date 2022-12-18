@@ -319,16 +319,14 @@ $(document).ready(function () {
         escondeEstado();
     });
 
-    // al pulsar en el icono del carrito o en carrito, se muestra el carrito
+    // al pulsar en carrito, si no hay productos en el carrito, se muestra un mensaje
     $('header').on('click', '#carrito', function () {
-        // si no hay productos en el carrito, se muestra un mensaje
         if (localStorage.getItem('productos_carrito') == null || JSON.parse(localStorage.getItem('productos_carrito')).length == 0) {
             $('#estado').text('No hay productos en el carrito');
             escondeEstado();
-        } else {
+        } else { // se muestra el carrito
             cambiarCategoria();
             categoria = "carrito";
-            // muestra solo el carrito
             $('#disponible').empty();
             $('#orden').hide();
             $('#disponible_carrito').show();
@@ -386,7 +384,7 @@ $(document).ready(function () {
         let productos_carrito = JSON.parse(localStorage.getItem('productos_carrito'));
         let cantidad = $(this).parent().find('.tarjeta__input_cantidad').val();
         let producto = $(this).parent().find('.tarjeta__title').text();
-
+        // guarda la nueva cantidad
         $(this).parent().find('.tarjeta__cantidad').text(`Cantidad: ${cantidad}`);
         if (cantidad <= 0) {
             $(this).parent().remove();
@@ -444,11 +442,11 @@ $(document).ready(function () {
         if ($('#disponible').find('.volver').length > 1) {
             $('#disponible').find('.volver').last().remove();
         }
-        // cambia la clase de la tarjeta por tarjeta__detallada
+        // cambia la clase de la tarjeta por tarjeta__detallada (para css)
         $('#disponible').find('.tarjeta').removeClass('tarjeta').addClass('tarjeta__detallada');
     });
 
-    // al pulsar iniciarsesion, se oculta todo menos el div login
+    // al pulsar 'iniciar sesion', se oculta todo menos el div login
     $('#iniciarsesion').on('click', function () {
         $('#disponible').hide();
         $('#disponible_carrito').hide();
@@ -458,14 +456,12 @@ $(document).ready(function () {
 
     // si pulsas registrarse se muestra el div registrarse se hace visible
     $('#registrate').on('click', function () {
-        // muestra el div registrarse
         $('#registrarse').show();
-        // si pulsa el boton enviar
+        // pulsar el boton enviar, si está vacío algún campo, da error
         $('#registrarse').on('click', '#registrar_submit', function () {
-            // si algún campo está vacío, da error
             if ($('#registrarse').find('#nombre').val() == '' || $('#registrarse').find('#correo').val() == '' || $('#registrarse').find('#contrasena').val() == '') {
                 alert('Rellena todos los campos');
-            } else {
+            } else { // manda el correo
                 const btn = document.getElementById('registrar_submit');
                 document.getElementById('registrarme')
                     .addEventListener('submit', function (event) {
@@ -522,23 +518,20 @@ $(document).ready(function () {
         });
     });
 
-    // al hacer click en comprar, se muestra un formulario para rellenar los datos
+    // al hacer click en comprar, se muestra un formulario para rellenar los datos, y si hay algún campo vacío, da error
     $('#disponible_carrito').on('click', '#comprar', function () {
-        // si hay algun campo vacío, da error
         if ($('#disponible_carrito').find('#nombre').val() == '' || $('#disponible_carrito').find('#apellidos').val() == '' || $('#disponible_carrito').find('#direccion').val() == '' || $('#disponible_carrito').find('#ciudad').val() == '' || $('#disponible_carrito').find('#telefono').val() == '') {
             alert('Rellena todos los campos');
         } else {
             total = $('#total').text();
-            // vacia el div disponible_carrito
             $('#disponible_carrito').empty();
-            // muestra el div comprar
             $('#form_envio').show();
             // añade un input con el total a form_enviar
             $('#form_enviar').append('<input type="hidden" name="total_pedido" id="total_pedido" value="' + total + '">');
-            // si pulsa el boton enviar
             $('#form_envio').on('click', '#enviar_pedido', function () {
                 const btn = document.getElementById('enviar_pedido');
 
+                // envía el correo de confirmación de pedido
                 document.getElementById('form_enviar')
                     .addEventListener('submit', function (event) {
                         total = JSON.stringify(total);
@@ -559,9 +552,7 @@ $(document).ready(function () {
                             });
                         // vacía productos_carrito del localstorage
                         localStorage.removeItem('productos_carrito');
-                        // esconde el form_envio
                         $('#form_envio').hide();
-                        // muestra el div disponible
                         $('#disponible').show();
                         mostrarOchoProductos();
                     });
