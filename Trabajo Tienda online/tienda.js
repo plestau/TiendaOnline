@@ -35,74 +35,6 @@ $(document).ready(function () {
             });
     }
 
-    // La pantalla de carga parpadea como efecto visual
-    function configureLoadingScreen(screen) {
-        $(document)
-            .ajaxStart(function () {
-                screen.fadeIn();
-            })
-            .ajaxStop(function () {
-                screen.fadeOut();
-            });
-    }
-
-    // funcion para cargar más tarjetas a medida que el usuario hace scroll (si hay mñas productos disponibles)
-    function peticionScroll() {
-        if (!peticionEnCurso) {
-            peticionEnCurso = true;
-            // si está dentro de alguna categoria, se carga la siguiente pagina de esa categoria
-            if (categoria == null) {
-                var url = 'https://fakestoreapi.com/products';
-            } else {
-                var url = 'https://fakestoreapi.com/products/category/' + categoria;
-            }
-            $.ajax({
-                url: url,
-                success: function (data) {
-                    data.forEach(producto => {
-                        let div = document.createElement('div');
-                        div.className = 'tarjeta';
-                        div.innerHTML = `
-                        <h5 class="tarjeta__title">${producto.title}</h5>
-                        <img src="${producto.image}" class="tarjeta__imagen">
-                        <div class="tarjeta__body">
-                            <p class="tarjeta__description">${producto.description}</p>
-                            <p class="tarjeta__price">Precio: ${producto.price} $</p>
-                        </div>
-                        <input type="button" value="Añadir al carrito" class="tarjeta__button_añadir">
-                        `;
-                        $('#disponible').append(div);
-                    });
-                },
-            })
-            // si quieres que cargue infinito aunque ya lo haya cargado:
-            // peticionEnCurso = false
-        }
-    }
-
-    // detecta cuando se llega al final del documento
-    function scroll() {
-        if (window.scrollY + window.innerHeight + 10000 >= document.body.scrollHeight) {
-            peticionScroll();
-        }
-        else {
-            peticionEnCurso = false;
-        }
-    }
-
-    window.addEventListener('scroll', () => {
-        // si estoy en el carrito, se detiene la carga de productos
-        if (categoria == "carrito") {
-            $('#loading-screen').fadeOut(
-                function () {
-                    document.removeEventListener('scroll', () => { });
-                });
-        }
-        else {
-            scroll();
-        }
-    });
-
     // Carga una categoria de productos
     function cargarCategoria() {
         $('#disponible').empty();
@@ -137,9 +69,77 @@ $(document).ready(function () {
         $('#total').html(`Total: ${total} $`);
     }
 
-    function guardarEnLocalStorage(productos_carrito){
+    function guardarEnLocalStorage(productos_carrito) {
         localStorage.setItem('productos_carrito', JSON.stringify(productos_carrito));
     }
+
+    // La pantalla de carga parpadea como efecto visual
+    function configureLoadingScreen(screen) {
+        $(document)
+            .ajaxStart(function () {
+                screen.fadeIn();
+            })
+            .ajaxStop(function () {
+                screen.fadeOut();
+            });
+    }
+
+    // funcion para cargar más tarjetas a medida que el usuario hace scroll (si hay mñas productos disponibles)
+    function peticionScroll() {
+        if (!peticionEnCurso) {
+            peticionEnCurso = true;
+            // si está dentro de alguna categoria, se carga la siguiente pagina de esa categoria
+            if (categoria == null) {
+                var url = 'https://fakestoreapi.com/products';
+            } else {
+                var url = 'https://fakestoreapi.com/products/category/' + categoria;
+            }
+            $.ajax({
+                url: url,
+                success: function (data) {
+                    data.forEach(producto => {
+                        let div = document.createElement('div');
+                        div.className = 'tarjeta';
+                        div.innerHTML = `
+                            <h5 class="tarjeta__title">${producto.title}</h5>
+                            <img src="${producto.image}" class="tarjeta__imagen">
+                            <div class="tarjeta__body">
+                                <p class="tarjeta__description">${producto.description}</p>
+                                <p class="tarjeta__price">Precio: ${producto.price} $</p>
+                            </div>
+                            <input type="button" value="Añadir al carrito" class="tarjeta__button_añadir">
+                            `;
+                        $('#disponible').append(div);
+                    });
+                },
+            })
+            // si quieres que cargue infinito aunque ya lo haya cargado:
+            // peticionEnCurso = false
+        }
+    }
+
+    // detecta cuando se llega al final del documento
+    function scroll() {
+        if (window.scrollY + window.innerHeight + 10000 >= document.body.scrollHeight) {
+            peticionScroll();
+        }
+        else {
+            peticionEnCurso = false;
+        }
+    }
+
+    window.addEventListener('scroll', () => {
+        // si estoy en el carrito, se detiene la carga de productos
+        if (categoria == "carrito") {
+            $('#loading-screen').fadeOut(
+                function () {
+                    document.removeEventListener('scroll', () => { });
+                });
+        }
+        else {
+            scroll();
+        }
+    });
 
     // Esconde los div en caso de ser necesario
     function cambiarCategoria() {
