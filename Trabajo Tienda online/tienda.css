@@ -67,7 +67,7 @@ header, #categorias, #orden{
 #carrologo_carrito, #carrito_logo h1{
     height: 50px;
     margin: 30px;
-    text-decoration:dotted underline;
+    text-decoration: dotted underline;
     text-decoration-color: yellowgreen;
 }
 
