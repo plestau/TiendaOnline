@@ -14,6 +14,7 @@ $(document).ready(function () {
     // Cargamos los primeros 8 productos
     mostrarOchoProductos();
 
+    // FUNCIONES
     function mostrarOchoProductos() {
         fetch('https://fakestoreapi.com/products?limit=8')
             .then(res => res.json())
@@ -36,7 +37,7 @@ $(document).ready(function () {
     }
 
     // Carga una categoria de productos
-    function cargarCategoria() {
+    function cargarCategoria(categoria) {
         $('#disponible').empty();
         fetch("https://fakestoreapi.com/products/category/" + categoria)
             .then(res => res.json())
@@ -157,26 +158,23 @@ $(document).ready(function () {
         }, 6000);
     }
 
+    // EVENTOS
     // cambiando la vista al pulsar en los botones de categorias
     $('#electronica').click(function () {
         cambiarCategoria();
-        categoria = "electronics";
-        cargarCategoria();
+        cargarCategoria("electronics");
     });
     $('#joyeria').click(function () {
         cambiarCategoria();
-        categoria = "jewelery";
-        cargarCategoria();
+        cargarCategoria("jewelery");
     });
     $('#hombre').click(function () {
         cambiarCategoria();
-        categoria = "men's clothing";
-        cargarCategoria();
+        cargarCategoria("men's clothing");
     });
     $('#mujer').click(function () {
         cambiarCategoria();
-        categoria = "women's clothing";
-        cargarCategoria();
+        cargarCategoria("women's clothing");
     });
 
     // botones ascendente y descendente que ordenan los productos mediante el id de la api
@@ -454,7 +452,7 @@ $(document).ready(function () {
         categoria = 'login';
     });
 
-    // si pulsas registrarse se muestra el div registrarse se hace visible
+    // si pulsas registrarse, el div registrarse se hace visible
     $('#registrate').on('click', function () {
         $('#registrarse').show();
         // pulsar el boton enviar, si está vacío algún campo, da error
@@ -557,7 +555,6 @@ $(document).ready(function () {
                         mostrarOchoProductos();
                     });
             });
-
         }
     });
 
